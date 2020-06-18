@@ -1,0 +1,19 @@
+{
+	"manifest_version": 2,
+	"name": "whale mermaid UML",
+	"version": "0.1.0",
+
+	"description": "웨일 사이드바 앱에서 사용할 수 있는 UML 작성 확장앱입니다.",
+	"icons": {},
+
+	"sidebar_action": {
+		"default_page": "sidebar.html",
+		"default_icon": {
+			
+		},
+
+		"default_title": "mermaid uml",
+		"use_navigation_bar": false
+	}
+
+}
