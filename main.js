@@ -127,6 +127,9 @@ function updatePreview(){
 
 function pageInit() {
     var references = document.getElementById("references")
+    var editor = document.getElementById("editor")
+
+    editor.oninput = updatePreview
 
     for (var key in umlReferece) { // load reference buttons
         var button = document.createElement("button")
