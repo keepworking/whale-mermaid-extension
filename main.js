@@ -43,7 +43,72 @@ var config = { // mermaid default define
 
 mermaid.initialize(config);
 
-const graphDefinition = 'graph TB\na-->b';
+const umlReferece = {
+    "Flow Chart" : `graph TD
+	A[Christmas] -->|Get money| B(Go shopping)
+	B --> C{Let me think}
+	C -->|One| D[Laptop]
+	C -->|Two| E[iPhone]
+	C -->|Three| F[fa:fa-car Car]
+`,
+    "Sequence Diagram" : `sequenceDiagram
+	Alice->>+John: Hello John, how are you?
+	Alice->>+John: John, can you hear me?
+	John-->>-Alice: Hi Alice, I can hear you!
+	John-->>-Alice: I feel great!`,
+    "Class Diagram" : `classDiagram
+	Animal <|-- Duck
+	Animal <|-- Fish
+	Animal <|-- Zebra
+	Animal : +int age
+	Animal : +String gender
+	Animal: +isMammal()
+	Animal: +mate()
+	class Duck{
+		+String beakColor
+		+swim()
+		+quack()
+	}
+	class Fish{
+		-int sizeInFeet
+		-canEat()
+	}
+	class Zebra{
+		+bool is_wild
+		+run()
+	}`,
+    "State Diagram" : `stateDiagram
+	[*] --> Still
+	Still --> [*]
+
+	Still --> Moving
+	Moving --> Still
+	Moving --> Crash
+	Crash --> [*]`,
+    "Gantt Diagram" : `gantt
+	title A Gantt Diagram
+	dateFormat  YYYY-MM-DD
+	section Section
+	A task           :a1, 2014-01-01, 30d
+	Another task     :after a1  , 20d
+	section Another
+	Task in sec      :2014-01-12  , 12d
+	another task      : 24d`,
+    "Pie Chart" : `pie title Pets adopted by volunteers
+	"Dogs" : 386
+	"Cats" : 85
+	"Rats" : 15`,
+    "ER Diagram" : `erDiagram
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : has
+    CUSTOMER ||--o{ ORDER : places
+    CUSTOMER ||--o{ INVOICE : "liable for"
+    DELIVERY-ADDRESS ||--o{ ORDER : receives
+    INVOICE ||--|{ ORDER : covers
+    ORDER ||--|{ ORDER-ITEM : includes
+    PRODUCT-CATEGORY ||--|{ PRODUCT : contains
+    PRODUCT ||--o{ ORDER-ITEM : "ordered in"`,
+}
+
 const renderCallback = function(svgGraph){
     // console.log(svgGraph)
     var ele = document.getElementById('preview')
@@ -54,9 +119,27 @@ function updatePreview(){
     try {
         var editor = document.getElementById("editor")
         var preview = document.getElementById("preview")
-        console.log(editor.value)
         mermaid.render('result',editor.value,renderCallback,preview);
     } catch (error) {
         console.log(error)
     }
 }
+
+function pageInit() {
+    var references = document.getElementById("references")
+
+    for (var key in umlReferece) { // load reference buttons
+        var button = document.createElement("button")
+        button.innerText = key
+        button.onclick = function() {
+            var editor = document.getElementById("editor")
+            editor.value = umlReferece[this.innerText]
+            updatePreview()
+        }
+        references.appendChild(button)
+    }
+
+}
+
+
+pageInit()

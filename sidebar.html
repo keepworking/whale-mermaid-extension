@@ -5,13 +5,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Whale Mermaid UML</title>
 	<script src="mermaid.min.js"></script>
-	<script src="main.js"></script>
 	<link rel="stylesheet" href="main.css">
 </head>
-<body >
+<body>
+	
+	<h3>Preview</h3>
 	<div id="preview">
 		<div id="result"></div>
 	</div>
-	<textarea oninput="updatePreview();" name="editor" id="editor" cols="40" rows="20"></textarea>
+	
+	<h3>Editor</h3>
+	<div class="editor">
+		<textarea oninput="updatePreview();" name="editor" id="editor"></textarea>
+	</div>
+	
+	<h3>Reference</h3>
+	<div id="references"></div>
 </body>
+<footer>
+	<script src="main.js"></script>
+</footer>
 </html>
