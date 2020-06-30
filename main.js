@@ -109,17 +109,38 @@ const umlReferece = {
     PRODUCT ||--o{ ORDER-ITEM : "ordered in"`,
 }
 
+function DrawImage(svg){
+    var oldImage = document.getElementById("copyImage")
+    
+    if(oldImage) {
+        oldImage.remove();
+    }
+
+    var preview = document.getElementById("preview")
+    
+    var b64Head = 'data:image/svg+xml;base64,'
+    var b64Body = btoa(svg)
+    var b64Src = b64Head + b64Body
+
+    var img = document.createElement("img")
+
+    img.id = "copyImage"
+    img.src = b64Src
+
+    preview.appendChild(img)
+}
+
 const renderCallback = function(svgGraph){
-    // console.log(svgGraph)
     var ele = document.getElementById('preview')
     ele.innerHTML = svgGraph
+    DrawImage(svgGraph)
 };
 
 function updatePreview(){
     try {
         var editor = document.getElementById("editor")
         var preview = document.getElementById("preview")
-        mermaid.render('result',editor.value,renderCallback,preview);
+        mermaid.render('result',editor.value,renderCallback,preview)
     } catch (error) {
         console.log(error)
     }
@@ -143,6 +164,5 @@ function pageInit() {
     }
 
 }
-
 
 pageInit()
