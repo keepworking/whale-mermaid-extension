@@ -13,3 +13,4 @@
 4. 레이아웃이랑 레퍼런스 uml 예제 추가함 mermaid-js.github.io/mermaid-live-editor/ 에서 가져옴
 5. 에디터에서 tab이 눌리지 않음 어디서 에디터 js 라이브러리 구해야할듯,
 6. Monaco Editor 또는 Code Mirror 참고 2020-06-21
+7. 이미지를 클립보드에 바로 복사하는게 쉽게 구현되지 않는다. 일단 임시로 우클릭시 복사 옵션 쓸수 있게 설정함.
